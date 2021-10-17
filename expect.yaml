@@ -1,12 +1,12 @@
----
-- hosts: 192.168.1.1
-  connection: local
+- name:  Deploy project
+  hosts: localhost
   gather_facts: false
-
   tasks:
-    - name: Expect Attempt
-      expect:
-        command: ssh admin@192.168.1.1
-        responses:
-                Password:: "xxxxxxxxx"
-                '>': "enable"
+  - name:  use expect from localhost
+    expect:
+       command: ssh admin@appqa-4-05
+       responses:
+         'Password:': "injab0xn"
+         '>' : "enable"
+         '#' : "show version"
+         '#' : "exit"
