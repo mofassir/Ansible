@@ -1,4 +1,4 @@
-- name: Make requests to api
+- name: Make requests to example api
   hosts: localhost
   connection: local
   tasks:
@@ -10,3 +10,6 @@
         headers:
           Accept: application/json
       register: response
+
+    - debug:
+        msg: "{{ response.content }}"
