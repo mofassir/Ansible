@@ -1,0 +1,29 @@
+- name: Add user to example api
+  hosts: localhost
+  connection: local
+  vars:
+    data:
+      chris:
+        name: chris
+        salary: 46000
+        age: 27
+      jessy:
+        name: jessy
+        salary: 70000
+        age: 30
+  tasks:
+    - name: create employee
+      uri:
+        method: POST
+        url: "http://dummy.restapiexample.com/api/v1/create"
+        return_content: yes
+        headers:
+          Accept: application/json
+        body_format: json
+        body: "{{ item.value | to_json }}" //Render valid json from each dictionary in the variable data.
+      with_dict: "{{ data }}"
+      register: post_content
+
+    - debug:
+        msg: "{{ item.content }}"
+      with_items: "{{ post_content.results }}"
