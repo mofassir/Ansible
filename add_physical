@@ -1,0 +1,37 @@
+- name: Man requests
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: man request
+      uri:
+        method: POST
+        url: "https://xxxxxxxxxxxxx.xxx.xxx/xxxxxxxx/rest/v1.0/xxx/manufacture"
+        return_content: yes
+        headers:
+          Accept: application/json
+          Accept-Encoding: gzip, deflate, br
+          Connection: keep-alive
+          Cookie: session_xxxxxx=e3334cfc-d544-44b4-9cfa-5afc1b08404f; remember_token="mofassir.haque\073\073\0736de230b30411cb2a57ebd2b0f48bcd15f5b7380445c3d2940a6ecd42c67765e6|f3e9d8f2c150c10b504ca7694408c107656d43e5b6cc66efca641342c88e1bc85b3cce65f112a76542f0b6ca79678bd0e1ee3a5f9dfb7ebb5122db203871f6a5"
+          Sec-Fetch-Dest: empty
+          Sec-Fetch-Mode: cors
+          Sec-Fetch-Site: same-origin
+          
+        body_format: json 
+        body:
+           accept_eula: true
+           additional_licenses_to_install: "xxxxxx"
+           config_url: null
+           enable_root:	false
+           hostname: "xxxxxxxxxx"
+           image_url: "xxxxxxx.img"
+           install_licenses: true
+           install_ssh_keys: false
+           kernel_url: "xxxxxxxxxxx86_64_latest"
+           kickstart_url: null
+           rootflop_url: "xxxxxxxxxxrootflop_latest.img"
+           timeout: 3600
+
+      register: response
+
+    - debug:
+        msg: "{{ response.content }}"
