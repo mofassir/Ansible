@@ -1,0 +1,16 @@
+- name: Execute commands on remote switch
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name:  use expect from localhost
+    expect:
+       command: ssh admin@hostname
+       responses:
+         'Password:': "xxxxxx"
+         'hostname >': "enable"
+         'hostname #': "configure terminal"    
+         'hostname (config) #': 
+                - show ntp
+                - write memory
+                - show memory
+                - exit
