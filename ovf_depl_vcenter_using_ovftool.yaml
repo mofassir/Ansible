@@ -1,0 +1,17 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create OVA
+      shell: | 
+        /usr/bin/ovftool \
+        --noSSLVerify \
+        --powerOn \
+        --acceptAllEulas \
+        --name="muh-vcenter-im-786" \
+        --diskMode="thin" \
+        --datastore="SSD-801" \
+        --net:"Management Network=VM Network" \
+        http://xxxxxxx/xxxxxxxxx/xxxxxxxx/xxxxxv/xxxx.ova \
+        'vi://user_name:password@vcenter_host_name/DATASTORE/host/ESXI_host_name'
+
+      delegate_to: localhost
