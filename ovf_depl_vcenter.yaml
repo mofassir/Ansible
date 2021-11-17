@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  become: no
+  gather_facts: False
+  vars:
+   ansible_python_interpreter: /usr/bin/python3
+  tasks:
+  - name: Deploy VMware Identity Manager OVA
+    community.vmware.vmware_deploy_ovf:
+     hostname: xxxxxxxxxxxxxxxx
+     username: xxxxxxxxxxxxx
+     password: xxxxxxxxxxxxxx
+     datacenter: xxx
+     esxi_hostname: xxxxxxxxxxxxxxxx
+     validate_certs: no
+     datastore: RAID-801
+     name: MofassirUlHaque786
+     networks: "{u'Management Network':u'Traffic-1G'}"
+     power_on: yes
+     ova: /home/mofassir.haque/Downloads/xxxxxxx 
+    delegate_to: localhost
+
+
